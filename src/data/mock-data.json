@@ -1,0 +1,326 @@
+{
+  "brands": [
+    { "id": "1", "name": "Apple" },
+    { "id": "2", "name": "Samsung" },
+    { "id": "3", "name": "Sony" },
+    { "id": "4", "name": "Microsoft" },
+    { "id": "5", "name": "Dell" },
+    { "id": "6", "name": "HP" },
+    { "id": "7", "name": "Lenovo" },
+    { "id": "8", "name": "Asus" },
+    { "id": "9", "name": "Acer" },
+    { "id": "10", "name": "LG" }
+  ],
+  "categories": [
+    { "id": "1", "name": "Smartphones" },
+    { "id": "2", "name": "Laptops" },
+    { "id": "3", "name": "Tablets" },
+    { "id": "4", "name": "Monitors" },
+    { "id": "5", "name": "Accessories" },
+    { "id": "6", "name": "Audio" },
+    { "id": "7", "name": "Gaming" },
+    { "id": "8", "name": "Wearables" }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "iPhone 15 Pro",
+      "brand": { "id": "1", "name": "Apple" },
+      "category": { "id": "1", "name": "Smartphones" },
+      "price": "999.99",
+      "image": "https://picsum.photos/seed/1/400/300",
+      "createdAt": "2025-04-10T08:18:37.000Z",
+      "updatedAt": "2025-04-10T08:18:37.000Z"
+    },
+    {
+      "id": "2",
+      "name": "Galaxy S24 Ultra",
+      "brand": { "id": "2", "name": "Samsung" },
+      "category": { "id": "1", "name": "Smartphones" },
+      "price": "1199.99",
+      "image": "https://picsum.photos/seed/2/400/300",
+      "createdAt": "2025-04-12T05:18:30.000Z",
+      "updatedAt": "2025-04-12T05:18:30.000Z"
+    },
+    {
+      "id": "3",
+      "name": "MacBook Pro 16",
+      "brand": { "id": "1", "name": "Apple" },
+      "category": { "id": "2", "name": "Laptops" },
+      "price": "2499.99",
+      "image": "https://picsum.photos/seed/3/400/300",
+      "createdAt": "2025-04-15T01:10:10.000Z",
+      "updatedAt": "2025-04-15T01:10:10.000Z"
+    },
+    {
+      "id": "4",
+      "name": "Galaxy Book Pro",
+      "brand": { "id": "2", "name": "Samsung" },
+      "category": { "id": "2", "name": "Laptops" },
+      "price": "1299.99",
+      "image": "https://picsum.photos/seed/4/400/300",
+      "createdAt": "2025-04-15T05:40:05.000Z",
+      "updatedAt": "2025-04-15T05:40:05.000Z"
+    },
+    {
+      "id": "5",
+      "name": "iPad Pro",
+      "brand": { "id": "1", "name": "Apple" },
+      "category": { "id": "3", "name": "Tablets" },
+      "price": "799.99",
+      "image": "https://picsum.photos/seed/5/400/300",
+      "createdAt": "2025-04-15T06:40:05.000Z",
+      "updatedAt": "2025-04-15T06:40:05.000Z"
+    },
+    {
+      "id": "6",
+      "name": "Galaxy Tab S9",
+      "brand": { "id": "2", "name": "Samsung" },
+      "category": { "id": "3", "name": "Tablets" },
+      "price": "699.99",
+      "image": "https://picsum.photos/seed/6/400/300",
+      "createdAt": "2025-04-15T07:40:05.000Z",
+      "updatedAt": "2025-04-15T07:40:05.000Z"
+    },
+    {
+      "id": "7",
+      "name": "Surface Pro 9",
+      "brand": { "id": "4", "name": "Microsoft" },
+      "category": { "id": "3", "name": "Tablets" },
+      "price": "999.99",
+      "image": "https://picsum.photos/seed/7/400/300",
+      "createdAt": "2025-04-15T08:40:05.000Z",
+      "updatedAt": "2025-04-15T08:40:05.000Z"
+    },
+    {
+      "id": "8",
+      "name": "Dell XPS 15",
+      "brand": { "id": "5", "name": "Dell" },
+      "category": { "id": "2", "name": "Laptops" },
+      "price": "1799.99",
+      "image": "https://picsum.photos/seed/8/400/300",
+      "createdAt": "2025-04-15T09:40:05.000Z",
+      "updatedAt": "2025-04-15T09:40:05.000Z"
+    },
+    {
+      "id": "9",
+      "name": "HP Spectre x360",
+      "brand": { "id": "6", "name": "HP" },
+      "category": { "id": "2", "name": "Laptops" },
+      "price": "1399.99",
+      "image": "https://picsum.photos/seed/9/400/300",
+      "createdAt": "2025-04-15T10:40:05.000Z",
+      "updatedAt": "2025-04-15T10:40:05.000Z"
+    },
+    {
+      "id": "10",
+      "name": "ThinkPad X1 Carbon",
+      "brand": { "id": "7", "name": "Lenovo" },
+      "category": { "id": "2", "name": "Laptops" },
+      "price": "1599.99",
+      "image": "https://picsum.photos/seed/10/400/300",
+      "createdAt": "2025-04-15T11:40:05.000Z",
+      "updatedAt": "2025-04-15T11:40:05.000Z"
+    },
+    {
+      "id": "11",
+      "name": "ROG Zephyrus G14",
+      "brand": { "id": "8", "name": "Asus" },
+      "category": { "id": "2", "name": "Laptops" },
+      "price": "1499.99",
+      "image": "https://picsum.photos/seed/11/400/300",
+      "createdAt": "2025-04-15T12:40:05.000Z",
+      "updatedAt": "2025-04-15T12:40:05.000Z"
+    },
+    {
+      "id": "12",
+      "name": "Predator Helios 300",
+      "brand": { "id": "9", "name": "Acer" },
+      "category": { "id": "2", "name": "Laptops" },
+      "price": "1299.99",
+      "image": "https://picsum.photos/seed/12/400/300",
+      "createdAt": "2025-04-15T13:40:05.000Z",
+      "updatedAt": "2025-04-15T13:40:05.000Z"
+    },
+    {
+      "id": "13",
+      "name": "LG Gram 17",
+      "brand": { "id": "10", "name": "LG" },
+      "category": { "id": "2", "name": "Laptops" },
+      "price": "1499.99",
+      "image": "https://picsum.photos/seed/13/400/300",
+      "createdAt": "2025-04-15T14:40:05.000Z",
+      "updatedAt": "2025-04-15T14:40:05.000Z"
+    },
+    {
+      "id": "14",
+      "name": "UltraSharp 27 Monitor",
+      "brand": { "id": "5", "name": "Dell" },
+      "category": { "id": "4", "name": "Monitors" },
+      "price": "499.99",
+      "image": "https://picsum.photos/seed/14/400/300",
+      "createdAt": "2025-04-15T15:40:05.000Z",
+      "updatedAt": "2025-04-15T15:40:05.000Z"
+    },
+    {
+      "id": "15",
+      "name": "Odyssey G9",
+      "brand": { "id": "2", "name": "Samsung" },
+      "category": { "id": "4", "name": "Monitors" },
+      "price": "1299.99",
+      "image": "https://picsum.photos/seed/15/400/300",
+      "createdAt": "2025-04-15T16:40:05.000Z",
+      "updatedAt": "2025-04-15T16:40:05.000Z"
+    },
+    {
+      "id": "16",
+      "name": "ProDisplay XDR",
+      "brand": { "id": "1", "name": "Apple" },
+      "category": { "id": "4", "name": "Monitors" },
+      "price": "4999.99",
+      "image": "https://picsum.photos/seed/16/400/300",
+      "createdAt": "2025-04-15T17:40:05.000Z",
+      "updatedAt": "2025-04-15T17:40:05.000Z"
+    },
+    {
+      "id": "17",
+      "name": "AirPods Pro",
+      "brand": { "id": "1", "name": "Apple" },
+      "category": { "id": "6", "name": "Audio" },
+      "price": "249.99",
+      "image": "https://picsum.photos/seed/17/400/300",
+      "createdAt": "2025-04-15T18:40:05.000Z",
+      "updatedAt": "2025-04-15T18:40:05.000Z"
+    },
+    {
+      "id": "18",
+      "name": "Galaxy Buds Pro",
+      "brand": { "id": "2", "name": "Samsung" },
+      "category": { "id": "6", "name": "Audio" },
+      "price": "199.99",
+      "image": "https://picsum.photos/seed/18/400/300",
+      "createdAt": "2025-04-15T19:40:05.000Z",
+      "updatedAt": "2025-04-15T19:40:05.000Z"
+    },
+    {
+      "id": "19",
+      "name": "WH-1000XM5",
+      "brand": { "id": "3", "name": "Sony" },
+      "category": { "id": "6", "name": "Audio" },
+      "price": "399.99",
+      "image": "https://picsum.photos/seed/19/400/300",
+      "createdAt": "2025-04-15T20:40:05.000Z",
+      "updatedAt": "2025-04-15T20:40:05.000Z"
+    },
+    {
+      "id": "20",
+      "name": "Xbox Series X",
+      "brand": { "id": "4", "name": "Microsoft" },
+      "category": { "id": "7", "name": "Gaming" },
+      "price": "499.99",
+      "image": "https://picsum.photos/seed/20/400/300",
+      "createdAt": "2025-05-15T08:40:05.000Z",
+      "updatedAt": "2025-05-15T08:40:05.000Z"
+    },
+    {
+      "id": "21",
+      "name": "PlayStation 5",
+      "brand": { "id": "3", "name": "Sony" },
+      "category": { "id": "7", "name": "Gaming" },
+      "price": "499.99",
+      "image": "https://picsum.photos/seed/21/400/300",
+      "createdAt": "2025-04-15T20:10:05.000Z",
+      "updatedAt": "2025-04-15T20:10:05.000Z"
+    },
+    {
+      "id": "22",
+      "name": "ROG Strix Gaming PC",
+      "brand": { "id": "8", "name": "Asus" },
+      "category": { "id": "7", "name": "Gaming" },
+      "price": "2499.99",
+      "image": "https://picsum.photos/seed/22/400/300",
+      "createdAt": "2025-04-05T20:40:05.000Z",
+      "updatedAt": "2025-04-05T20:40:05.000Z"
+    },
+    {
+      "id": "23",
+      "name": "Apple Watch Series 9",
+      "brand": { "id": "1", "name": "Apple" },
+      "category": { "id": "8", "name": "Wearables" },
+      "price": "399.99",
+      "image": "https://picsum.photos/seed/23/400/300",
+      "createdAt": "2025-04-16T20:40:05.000Z",
+      "updatedAt": "2025-04-16T20:40:05.000Z"
+    },
+    {
+      "id": "24",
+      "name": "Galaxy Watch 6",
+      "brand": { "id": "2", "name": "Samsung" },
+      "category": { "id": "8", "name": "Wearables" },
+      "price": "299.99",
+      "image": "https://picsum.photos/seed/24/400/300",
+      "createdAt": "2025-04-12T20:40:05.000Z",
+      "updatedAt": "2025-04-12T20:40:05.000Z"
+    },
+    {
+      "id": "25",
+      "name": "Magic Keyboard",
+      "brand": { "id": "1", "name": "Apple" },
+      "category": { "id": "5", "name": "Accessories" },
+      "price": "299.99",
+      "image": "https://picsum.photos/seed/25/400/300",
+      "createdAt": "2025-07-15T20:40:05.000Z",
+      "updatedAt": "2025-07-15T20:40:05.000Z"
+    },
+    {
+      "id": "26",
+      "name": "Surface Keyboard",
+      "brand": { "id": "4", "name": "Microsoft" },
+      "category": { "id": "5", "name": "Accessories" },
+      "price": "129.99",
+      "image": "https://picsum.photos/seed/26/400/300",
+      "createdAt": "2025-09-15T20:40:05.000Z",
+      "updatedAt": "2025-09-15T20:40:05.000Z"
+    },
+    {
+      "id": "27",
+      "name": "MX Master 3S",
+      "brand": { "id": "7", "name": "Lenovo" },
+      "category": { "id": "5", "name": "Accessories" },
+      "price": "99.99",
+      "image": "https://picsum.photos/seed/27/400/300",
+      "createdAt": "2025-08-15T20:40:05.000Z",
+      "updatedAt": "2025-08-15T20:40:05.000Z"
+    },
+    {
+      "id": "28",
+      "name": "iPhone 14",
+      "brand": { "id": "1", "name": "Apple" },
+      "category": { "id": "1", "name": "Smartphones" },
+      "price": "799.99",
+      "image": "https://picsum.photos/seed/28/400/300",
+      "createdAt": "2025-06-15T20:40:05.000Z",
+      "updatedAt": "2025-06-15T20:40:05.000Z"
+    },
+    {
+      "id": "29",
+      "name": "Galaxy S23",
+      "brand": { "id": "2", "name": "Samsung" },
+      "category": { "id": "1", "name": "Smartphones" },
+      "price": "899.99",
+      "image": "https://picsum.photos/seed/29/400/300",
+      "createdAt": "2025-02-15T20:40:05.000Z",
+      "updatedAt": "2025-02-15T20:40:05.000Z"
+    },
+    {
+      "id": "30",
+      "name": "Xperia 1 V",
+      "brand": { "id": "3", "name": "Sony" },
+      "category": { "id": "1", "name": "Smartphones" },
+      "price": "1299.99",
+      "image": "https://picsum.photos/seed/30/400/300",
+      "createdAt": "2025-05-15T20:40:05.000Z",
+      "updatedAt": "2025-05-15T20:40:05.000Z"
+    }
+  ]
+}
