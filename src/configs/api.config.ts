@@ -1,8 +1,8 @@
 import axios from 'axios';
-// import { environment } from './env.config';
+import environment from './env.config';
 
 const Api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: environment.apiUrl,
   headers: {
     'Content-Type': 'application/json',
   },
