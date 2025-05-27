@@ -1,37 +1,59 @@
+'use client';
+
+import type { UseRowSelectionReturn } from '@/hooks/use-row-selection';
+import type { DataTableRowAction } from '@/types/data-table.types';
+import type { Product } from '@/types/example-data.types';
+import type { ColumnDef } from '@tanstack/react-table';
+
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { format } from 'date-fns';
+
 import DataTableColumnHeader from '@/components/common/data-table/data-table-column-header';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Routes } from '@/constants/routes.constants';
-import { DataTableRowAction } from '@/types/data-table.types';
-import { IProduct } from '@/types/mock-data.types';
-import { ColumnDef } from '@tanstack/react-table';
-import { format } from 'date-fns';
-import Image from 'next/image';
-import Link from 'next/link';
-import { formatValue } from 'react-currency-input-field';
+
 import ProductTableActions from './product-table-actions';
 
-type Props = {
-  setRowAction: React.Dispatch<React.SetStateAction<DataTableRowAction<IProduct> | null>>;
-};
+interface Props {
+  setRowAction: React.Dispatch<React.SetStateAction<DataTableRowAction<Product> | null>>;
+  // Row selection hook return value
+  rowSelection: UseRowSelectionReturn<Product>;
+}
 
-const getProductTableColumns = ({ setRowAction }: Props): ColumnDef<IProduct>[] => [
+const getProductTableColumns = ({ setRowAction, rowSelection }: Props): ColumnDef<Product>[] => [
   {
     id: 'select',
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate')
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-        className="translate-y-0.5"
-      />
-    ),
+    header: ({ table }) => {
+      // Calculate if some rows are selected but not all (for indeterminate state)
+      const rowCount = table.getFilteredRowModel().rows.length;
+      const selectedCount = table
+        .getFilteredRowModel()
+        .rows.filter((row) => rowSelection.isRowSelected(row.original)).length;
+
+      const isIndeterminate =
+        selectedCount > 0 && selectedCount < rowCount && !rowSelection.selectAll;
+
+      return (
+        <Checkbox
+          checked={rowSelection.selectAll || (rowCount > 0 && selectedCount === rowCount)}
+          onCheckedChange={(value) => {
+            rowSelection.toggleAllSelected(!!value);
+          }}
+          aria-label="Select all rows across all pages"
+          className="translate-y-0.5"
+          data-state={isIndeterminate ? 'indeterminate' : undefined}
+        />
+      );
+    },
     cell: ({ row }) => (
       <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
+        checked={rowSelection.isRowSelected(row.original)}
+        onCheckedChange={(value) => {
+          rowSelection.toggleRowSelected(row.original, !!value);
+        }}
+        aria-label={`Select row ${row.original.id}`}
         className="translate-y-0.5"
       />
     ),
@@ -53,6 +75,7 @@ const getProductTableColumns = ({ setRowAction }: Props): ColumnDef<IProduct>[] 
         />
       </div>
     ),
+    enableSorting: false,
   },
   {
     accessorKey: 'id',
@@ -63,7 +86,6 @@ const getProductTableColumns = ({ setRowAction }: Props): ColumnDef<IProduct>[] 
       </Link>
     ),
     enableSorting: false,
-    enableHiding: false,
   },
   {
     accessorKey: 'name',
@@ -74,24 +96,17 @@ const getProductTableColumns = ({ setRowAction }: Props): ColumnDef<IProduct>[] 
     accessorKey: 'brand',
     header: ({ column }) => <DataTableColumnHeader column={column} title="Brand" />,
     cell: ({ row }) => <span>{row.original.brand.name}</span>,
+    enableSorting: false,
   },
   {
     accessorKey: 'category',
     header: ({ column }) => <DataTableColumnHeader column={column} title="Category" />,
     cell: ({ row }) => <span>{row.original.category.name}</span>,
+    enableSorting: false,
   },
   {
     accessorKey: 'price',
     header: ({ column }) => <DataTableColumnHeader column={column} title="Price" />,
-    cell: ({ row }) => (
-      <span>
-        {formatValue({
-          value: row.original.price,
-          decimalScale: 2,
-          prefix: '$',
-        })}
-      </span>
-    ),
   },
   {
     accessorKey: 'createdAt',

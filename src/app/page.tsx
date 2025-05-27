@@ -1,12 +1,8 @@
-import { Routes } from '@/constants/routes.constants';
 import { redirect } from 'next/navigation';
-import { SearchParams } from 'nuqs';
 
-type HomePageProps = {
-  searchParams: Promise<SearchParams>;
-};
+import { Routes } from '@/constants/routes.constants';
 
-const HomePage = async (props: HomePageProps) => {
+const HomePage = () => {
   redirect(Routes.DASHBOARD);
 };
 

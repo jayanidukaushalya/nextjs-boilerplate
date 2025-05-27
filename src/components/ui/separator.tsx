@@ -1,8 +1,10 @@
 'use client';
 
-import { cn } from '@/utils/tailwind-utils';
-import * as SeparatorPrimitive from '@radix-ui/react-separator';
 import * as React from 'react';
+
+import * as SeparatorPrimitive from '@radix-ui/react-separator';
+
+import { cn } from '@/utils/tailwind-utils';
 
 function Separator({
   className,

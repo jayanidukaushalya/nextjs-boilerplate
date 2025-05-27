@@ -1,4 +1,5 @@
 import { createSearchParamsCache, parseAsArrayOf, parseAsString } from 'nuqs/server';
+
 import { searchParamsParsers } from '.';
 
 export const productSearchParamsParsers = {

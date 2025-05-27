@@ -1,4 +1,4 @@
-export interface IBaseParams {
+export interface BaseParams {
   limit?: number;
   page?: number;
   sortby?: string;
@@ -6,24 +6,24 @@ export interface IBaseParams {
   search?: string;
 }
 
-export interface IBaseEntity {
+export interface BaseEntity {
   id: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
-export interface ICommonResponseDTO<T> {
+export interface CommonResponseDTO<T> {
   error: boolean;
   message: string;
   data: T;
 }
 
-export interface IPaginatedResponseDTO<T, U = IBasePaginationExtras> {
+export interface PaginatedResponseDTO<T, U = BasePaginationExtras> {
   results: T[];
   extras: U;
 }
 
-export interface IBasePaginationExtras {
+export interface BasePaginationExtras {
   total: number;
   limit?: number;
   skip?: number;

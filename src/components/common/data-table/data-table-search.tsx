@@ -1,19 +1,20 @@
-import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
 
-type DataTableSearchProps = {
+import { Input } from '@/components/ui/input';
+
+interface DataTableSearchProps {
   searchKey?: string;
   placeholder?: string;
   onSearchKeyChange?: (searchKey: string) => void;
-};
+}
 
 const DataTableSearch = ({ searchKey, placeholder, onSearchKeyChange }: DataTableSearchProps) => {
   return (
-    <div className="flex items-center min-w-80">
+    <div className="flex items-center">
       <div className="relative flex items-center flex-1 float-start">
         <Input
           placeholder={placeholder ?? 'Search'}
-          className="w-full text-sm max-w-80 ps-10"
+          className="w-full text-sm h-8 max-w-64 ps-10"
           value={searchKey ?? ''}
           onChange={(e) => onSearchKeyChange?.(e.target.value)}
         />

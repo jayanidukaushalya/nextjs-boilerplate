@@ -1,4 +1,4 @@
-import { QueryClient, defaultShouldDehydrateQuery, isServer } from '@tanstack/react-query';
+import { defaultShouldDehydrateQuery, isServer, QueryClient } from '@tanstack/react-query';
 
 const makeQueryClient = () => {
   return new QueryClient({

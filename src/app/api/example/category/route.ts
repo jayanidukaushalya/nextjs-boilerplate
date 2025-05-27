@@ -1,5 +1,7 @@
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
+
 import { categories } from '@/utils/mock-data.utils';
-import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
   // Extract query parameters

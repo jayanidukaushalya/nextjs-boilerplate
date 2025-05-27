@@ -1,4 +1,5 @@
-import type { Column } from '@tanstack/react-table';
+import type { Option } from '@/types/data-table.types';
+
 import { Check, PlusCircle } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
@@ -14,24 +15,24 @@ import {
 } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Separator } from '@/components/ui/separator';
-import { Option } from '@/types/data-table.types';
 import { cn } from '@/utils/tailwind-utils';
 
-type DataTableFacetedFilterProps<TData, TValue> = {
-  column?: Column<TData, TValue>;
+interface DataTableFacetedFilterProps {
   title?: string;
   options: Option[];
+  selectedValues: string[];
+  onValuesChange: (values: string[]) => void;
   icon?: React.ComponentType<{ className?: string }>;
-};
+}
 
-const DataTableFacetedFilter = <TData, TValue>({
-  column,
+const DataTableFacetedFilter = ({
   title,
   options,
+  selectedValues,
+  onValuesChange,
   icon: FilterIcon,
-}: DataTableFacetedFilterProps<TData, TValue>) => {
-  const unknownValue = column?.getFilterValue();
-  const selectedValues = new Set(Array.isArray(unknownValue) ? unknownValue : []);
+}: DataTableFacetedFilterProps) => {
+  const selected = new Set(selectedValues);
 
   return (
     <Popover>
@@ -43,15 +44,15 @@ const DataTableFacetedFilter = <TData, TValue>({
             <PlusCircle className="mr-2 size-4 opacity-60" />
           )}
           {title}
-          {selectedValues?.size > 0 && (
+          {selected.size > 0 && (
             <>
               <Separator orientation="vertical" className="mx-2 h-4" />
               <div className="hidden space-x-1 lg:flex">
-                {selectedValues.size > 2 ? (
-                  <Badge variant="secondary">{selectedValues.size} selected</Badge>
+                {selected.size > 2 ? (
+                  <Badge variant="secondary">{selected.size} selected</Badge>
                 ) : (
                   options
-                    .filter((option) => selectedValues.has(option.value))
+                    .filter((option) => selected.has(option.value))
                     .map((option) => (
                       <Badge variant="secondary" key={option.value}>
                         {option.label}
@@ -70,19 +71,19 @@ const DataTableFacetedFilter = <TData, TValue>({
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup className="max-h-[18.75rem] overflow-y-auto overflow-x-hidden">
               {options.map((option) => {
-                const isSelected = selectedValues.has(option.value);
+                const isSelected = selected.has(option.value);
 
                 return (
                   <CommandItem
                     key={option.value}
                     onSelect={() => {
+                      const newSelected = new Set(selected);
                       if (isSelected) {
-                        selectedValues.delete(option.value);
+                        newSelected.delete(option.value);
                       } else {
-                        selectedValues.add(option.value);
+                        newSelected.add(option.value);
                       }
-                      const filterValues = Array.from(selectedValues);
-                      column?.setFilterValue(filterValues.length ? filterValues : undefined);
+                      onValuesChange(Array.from(newSelected));
                     }}
                   >
                     <div
@@ -111,12 +112,12 @@ const DataTableFacetedFilter = <TData, TValue>({
                 );
               })}
             </CommandGroup>
-            {selectedValues.size > 0 && (
+            {selected.size > 0 && (
               <>
                 <CommandSeparator />
                 <CommandGroup>
                   <CommandItem
-                    onSelect={() => column?.setFilterValue(undefined)}
+                    onSelect={() => onValuesChange([])}
                     className="justify-center text-center"
                   >
                     Clear filters

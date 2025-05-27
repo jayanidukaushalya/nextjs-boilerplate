@@ -1,5 +1,13 @@
 'use client';
 
+import type { DataTableRowAction } from '@/types/data-table.types';
+import type { Product } from '@/types/example-data.types';
+import type { Row } from '@tanstack/react-table';
+
+import Link from 'next/link';
+
+import { MoreHorizontal } from 'lucide-react';
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,16 +15,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Routes } from '@/constants/routes.constants';
-import { DataTableRowAction } from '@/types/data-table.types';
-import { IProduct } from '@/types/mock-data.types';
-import { Row } from '@tanstack/react-table';
-import { MoreHorizontal } from 'lucide-react';
-import Link from 'next/link';
 
-type Props = {
-  row: Row<IProduct>;
-  setRowAction: React.Dispatch<React.SetStateAction<DataTableRowAction<IProduct> | null>>;
-};
+interface Props {
+  row: Row<Product>;
+  setRowAction: React.Dispatch<React.SetStateAction<DataTableRowAction<Product> | null>>;
+}
 
 const ProductTableActions = ({ row, setRowAction }: Props) => {
   return (
@@ -34,8 +37,8 @@ const ProductTableActions = ({ row, setRowAction }: Props) => {
             </DropdownMenuItem>
           </Link>
           <DropdownMenuItem
-            className="text-xs cursor-pointer text-destructive focus:text-destructive focus:bg-destructive/15"
             onSelect={() => setRowAction({ row, type: 'delete' })}
+            className="text-xs cursor-pointer text-destructive focus:text-destructive focus:bg-destructive/15"
           >
             Remove
           </DropdownMenuItem>

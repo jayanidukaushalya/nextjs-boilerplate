@@ -1,5 +1,10 @@
 'use client';
 
+import { useMemo } from 'react';
+
+import { type Column } from '@tanstack/react-table';
+import { ArrowDown, ArrowUp, ChevronsUpDown, EyeOff } from 'lucide-react';
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,9 +12,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/utils/tailwind-utils';
-import { type Column } from '@tanstack/react-table';
-import { ArrowDown, ArrowUp, ChevronsUpDown, EyeOff } from 'lucide-react';
-import { useMemo } from 'react';
 
 type DataTableColumnHeaderProps<TData, TValue> = React.HTMLAttributes<HTMLDivElement> & {
   column: Column<TData, TValue>;
@@ -65,7 +67,7 @@ const DataTableColumnHeader = <TData, TValue>({
             }
             className={cn(
               'flex items-center text-xs text-nowrap bg-transparent border-none p-0 cursor-pointer',
-              alignment
+              alignment,
             )}
           >
             {title}
@@ -78,7 +80,9 @@ const DataTableColumnHeader = <TData, TValue>({
             )}
           </button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align={align === 'end' ? 'end' : align === 'center' ? 'center' : 'start'}>
+        <DropdownMenuContent
+          align={align === 'end' ? 'end' : align === 'center' ? 'center' : 'start'}
+        >
           {column.getCanSort() && (
             <>
               <DropdownMenuItem onClick={() => column.toggleSorting(false)}>

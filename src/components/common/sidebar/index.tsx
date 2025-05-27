@@ -1,16 +1,10 @@
 'use client';
 
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from '@/components/ui/sidebar';
-import { Routes } from '@/constants/routes.constants';
+import * as React from 'react';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
 import {
   ArrowUpCircleIcon,
   AudioWaveform,
@@ -22,9 +16,19 @@ import {
   Settings2,
   SquareTerminal,
 } from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import * as React from 'react';
+
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from '@/components/ui/sidebar';
+import { Routes } from '@/constants/routes.constants';
+
 import NavMain from './nav-main';
 import NavUser from './nav-user';
 

@@ -1,9 +1,10 @@
 'use client';
 
+import type { PropsWithChildren } from 'react';
+
 import AppHeader from '@/components/common/header';
 import { AppSidebar } from '@/components/common/sidebar';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
-import { PropsWithChildren } from 'react';
 
 const DashboardLayout = ({ children }: PropsWithChildren) => {
   return (

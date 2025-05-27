@@ -1,57 +1,56 @@
 'use client';
 
-import DataTable from '@/components/common/data-table';
-import DataTableSkeleton from '@/components/common/data-table/data-table-skelton';
-import DataTableToolbar from '@/components/common/data-table/data-table-toolbar';
-import DeleteProductsModal from '@/components/modals/delete-products-modal';
-import { useCategories } from '@/hooks/use-categories';
-import useDataTable from '@/hooks/use-data-table';
-import { useProducts } from '@/hooks/use-products';
-import { productSearchParamsParsers } from '@/nuqs/product.nuqs';
-import { DataTableFilterField, DataTableRowAction } from '@/types/data-table.types';
-import { IProduct } from '@/types/mock-data.types';
-import { useQueryStates } from 'nuqs';
+import type { DataTableRowAction } from '@/types/data-table.types';
+import type { Product } from '@/types/example-data.types';
+
 import { useMemo, useState } from 'react';
+
+import { useQueryStates } from 'nuqs';
 import { toast } from 'sonner';
+
+import DataTable from '@/components/common/data-table';
+import DataTablePagination from '@/components/common/data-table/data-table-pagination';
+import DataTableSkeleton from '@/components/common/data-table/data-table-skelton';
+import { useProducts } from '@/hooks/examples/use-products';
+import useDataTable from '@/hooks/use-data-table';
+import useRowSelection from '@/hooks/use-row-selection';
+import { productSearchParamsParsers } from '@/nuqs/product.nuqs';
+
+import DeleteProductsModal from './delete-products-modal';
 import getProductTableColumns from './product-table-columns';
 import ProductTableToolbar from './product-table-toolbar';
 
 const ProductTable = () => {
-  const [rowAction, setRowAction] = useState<DataTableRowAction<IProduct> | null>(null);
-
-  const columns = useMemo(() => getProductTableColumns({ setRowAction }), [setRowAction]);
+  const [rowAction, setRowAction] = useState<DataTableRowAction<Product> | null>(null);
 
   const [searchParams] = useQueryStates(productSearchParamsParsers);
-
-  // Use searchParams as a dependency to ensure the query is re-fetched when filters change
-  const { data, error, isLoading } = useProducts(searchParams);
-
-  const { data: categoriesData } = useCategories();
+  const { data: productsData, error, isLoading } = useProducts(searchParams);
 
   const totalPages = useMemo(
-    () => (data ? Math.ceil(data?.extras?.total / searchParams.limit) : 1),
-    [data, searchParams.limit],
+    () => (productsData ? Math.ceil(productsData?.extras?.total / searchParams.limit) : 1),
+    [productsData, searchParams.limit],
   );
 
-  const tableData = useMemo(() => data?.results ?? [], [data?.results]);
+  const tableData = useMemo(() => productsData?.results ?? [], [productsData?.results]);
+  const totalDataCount = useMemo(
+    () => productsData?.extras?.total ?? 0,
+    [productsData?.extras?.total],
+  );
 
-  const filterFields: DataTableFilterField<IProduct>[] = [
-    {
-      id: 'name',
-      label: 'Name',
-      placeholder: 'Search here...',
-    },
-    {
-      id: 'category',
-      label: 'Category',
-      placeholder: 'Filter by category...',
-      options:
-        categoriesData?.results.map((category) => ({
-          label: category.name,
-          value: category.id,
-        })) ?? [],
-    },
-  ];
+  // Use our custom row selection hook
+  const rowSelection = useRowSelection<Product>({
+    getRowId: (row) => row.id,
+    totalCount: totalDataCount,
+  });
+
+  const columns = useMemo(
+    () =>
+      getProductTableColumns({
+        setRowAction,
+        rowSelection,
+      }),
+    [setRowAction, rowSelection],
+  );
 
   const { table } = useDataTable({
     data: tableData,
@@ -59,12 +58,10 @@ const ProductTable = () => {
     pageCount: totalPages,
     initialState: {
       sorting: [{ id: 'createdAt', desc: true }],
-      pagination: { pageIndex: searchParams.page, pageSize: searchParams.limit },
       columnPinning: { right: ['actions'] },
     },
-    filterFields,
     getRowId: (originalRow) => originalRow.id,
-    shallow: false, // This ensures server-side updates when URL changes
+    shallow: false,
     clearOnDefault: true,
   });
 
@@ -82,27 +79,25 @@ const ProductTable = () => {
   }
 
   if (error) {
-    toast.error('Error', {
-      description: error.message ?? 'An error occurred while fetching customers.',
-    });
+    toast.error('An error occurred while fetching customers.');
   }
 
   return (
     <div className="space-y-4">
-      <DataTable table={table}>
-        <DataTableToolbar table={table} filterFields={filterFields}>
-          <ProductTableToolbar table={table} />
-        </DataTableToolbar>
-      </DataTable>
+      <ProductTableToolbar table={table} rowSelection={rowSelection} />
+      <DataTable table={table} />
+      <DataTablePagination
+        totalDataCount={totalDataCount}
+        selectedCount={rowSelection.selectedCount}
+      />
 
       <DeleteProductsModal
+        products={rowAction?.row.original ? [rowAction?.row.original] : []}
+        onSuccess={rowSelection.clearSelections}
         open={rowAction?.type === 'delete'}
         onOpenChange={() => {
           setRowAction(null);
         }}
-        products={rowAction?.row.original ? [rowAction?.row.original] : []}
-        showTrigger={false}
-        onSuccess={() => rowAction?.row.toggleSelected(false)}
       />
     </div>
   );

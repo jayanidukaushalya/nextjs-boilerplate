@@ -1,6 +1,7 @@
 'use client';
 
 import type { Table } from '@tanstack/react-table';
+
 import { Check, ChevronsUpDown, Settings2 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -16,9 +17,9 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { toSentenceCase } from '@/utils/common-utils';
 import { cn } from '@/utils/tailwind-utils';
 
-type DataTableViewOptionsProps<TData> = {
+interface DataTableViewOptionsProps<TData> {
   table: Table<TData>;
-};
+}
 
 const DataTableViewOptions = <TData,>({ table }: DataTableViewOptionsProps<TData>) => {
   return (

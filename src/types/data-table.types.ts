@@ -1,4 +1,4 @@
-import { ColumnSort, Row } from '@tanstack/react-table';
+import type { ColumnSort, Row } from '@tanstack/react-table';
 
 export type StringKeyOf<TData> = Extract<keyof TData, string>;
 
@@ -14,7 +14,7 @@ export interface DataTableRowAction<TData> {
   type: 'update' | 'delete';
 }
 
-export interface DataTableFilterField<TData> {
+export interface DataTableFilterField {
   id: string;
   label: string;
   placeholder?: string;

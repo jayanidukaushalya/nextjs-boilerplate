@@ -1,5 +1,10 @@
 'use client';
 
+import { Fragment } from 'react';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,9 +15,6 @@ import {
 } from '@/components/ui/breadcrumb';
 import { Separator } from '@/components/ui/separator';
 import { SidebarTrigger } from '@/components/ui/sidebar';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React from 'react';
 
 const AppHeader = () => {
   const pathname = usePathname();
@@ -23,7 +25,7 @@ const AppHeader = () => {
     const pathSegments = pathname.split('/').filter((segment) => segment);
 
     // Create breadcrumb items
-    const breadcrumbs = pathSegments.map((segment, index) => {
+    return pathSegments.map((segment, index) => {
       // Create the path for this breadcrumb
       const path = `/${pathSegments.slice(0, index + 1).join('/')}`;
 
@@ -39,8 +41,6 @@ const AppHeader = () => {
         isLast: index === pathSegments.length - 1,
       };
     });
-
-    return breadcrumbs;
   };
 
   const breadcrumbs = generateBreadcrumbs();
@@ -61,8 +61,8 @@ const AppHeader = () => {
 
             {/* Add dynamic breadcrumb items */}
             {breadcrumbs.length > 1 &&
-              breadcrumbs.slice(1).map((breadcrumb, index) => (
-                <React.Fragment key={breadcrumb.path}>
+              breadcrumbs.slice(1).map((breadcrumb) => (
+                <Fragment key={breadcrumb.path}>
                   <BreadcrumbSeparator className="hidden md:block" />
                   <BreadcrumbItem>
                     {breadcrumb.isLast ? (
@@ -73,7 +73,7 @@ const AppHeader = () => {
                       </BreadcrumbLink>
                     )}
                   </BreadcrumbItem>
-                </React.Fragment>
+                </Fragment>
               ))}
           </BreadcrumbList>
         </Breadcrumb>

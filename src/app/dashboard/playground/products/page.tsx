@@ -1,13 +1,15 @@
-import { prefetchProducts } from '@/actions/products.actions';
+import type { SearchParams } from 'nuqs';
+
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+
+import { prefetchProducts } from '@/actions/example.actions';
 import ProductTable from '@/components/tables/product-table';
 import { productSearchParamsCache } from '@/nuqs/product.nuqs';
 import { getQueryClient } from '@/utils/query-utils';
-import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
-import { SearchParams } from 'nuqs';
 
-type ProductsPageProps = {
+interface ProductsPageProps {
   searchParams: Promise<SearchParams>;
-};
+}
 
 const ProductsPage = async (props: ProductsPageProps) => {
   const searchParams = await productSearchParamsCache.parse(props.searchParams);

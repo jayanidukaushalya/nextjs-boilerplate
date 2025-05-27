@@ -1,5 +1,6 @@
-import { flexRender, type Table as TanstackTable } from '@tanstack/react-table';
 import * as React from 'react';
+
+import { flexRender, type Table as TanstackTable } from '@tanstack/react-table';
 
 import {
   Table,
@@ -10,7 +11,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { cn } from '@/utils/tailwind-utils';
-import DataTablePagination from './data-table-pagination';
 
 type DataTableProps<TData> = React.HTMLAttributes<HTMLDivElement> & {
   /**
@@ -18,26 +18,11 @@ type DataTableProps<TData> = React.HTMLAttributes<HTMLDivElement> & {
    * @type TanstackTable<TData>
    */
   table: TanstackTable<TData>;
-
-  /**
-   * The floating bar to render at the bottom of the table on row selection.
-   * @default null
-   * @type React.ReactNode | null
-   * @example floatingBar={<TasksTableFloatingBar table={table} />}
-   */
-  floatingBar?: React.ReactNode | null;
 };
 
-const DataTable = <TData,>({
-  table,
-  floatingBar = null,
-  children,
-  className,
-  ...props
-}: DataTableProps<TData>) => {
+const DataTable = <TData,>({ table, className, ...props }: DataTableProps<TData>) => {
   return (
     <div className={cn('space-y-2.5', className)} {...props}>
-      {children}
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -75,10 +60,6 @@ const DataTable = <TData,>({
             )}
           </TableBody>
         </Table>
-      </div>
-      <div className="flex flex-col gap-2.5">
-        <DataTablePagination table={table} />
-        {table.getFilteredSelectedRowModel().rows.length > 0 && floatingBar}
       </div>
     </div>
   );

@@ -1,10 +1,15 @@
-import QueryProvider from '@/providers/query-provider';
-import '@/styles/globals.css';
-import { cn } from '@/utils/tailwind-utils';
 import type { Metadata } from 'next';
+
+import type { PropsWithChildren } from 'react';
+
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
-import { PropsWithChildren } from 'react';
 import { Toaster } from 'sonner';
+
+import { cn } from '@/utils/tailwind-utils';
+
+import '@/styles/globals.css';
+
+import QueryProvider from '@/providers/query-provider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
